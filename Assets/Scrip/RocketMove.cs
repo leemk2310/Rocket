@@ -6,6 +6,7 @@ public class RocketMove : MonoBehaviour
 {
     [SerializeField] float mainthrust = 600f;
     [SerializeField] float movethrust = 60f;
+    [SerializeField] AudioClip Flysound;
     Rigidbody rb;
     AudioSource  audioSource;
     
@@ -33,7 +34,7 @@ public class RocketMove : MonoBehaviour
              rb.AddRelativeForce(Vector3.up * mainthrust * Time.deltaTime); 
              if (!audioSource.isPlaying)
              {
-                audioSource.Play();
+                audioSource.PlayOneShot(Flysound);
                 
              } 
         }

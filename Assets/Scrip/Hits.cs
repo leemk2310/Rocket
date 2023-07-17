@@ -5,30 +5,60 @@ using UnityEngine.SceneManagement;
 
 public class Hits : MonoBehaviour
 {
-    [SerializeField] float Freeztime = 2f;
-    MeshRenderer Mesh;
+   
+    [SerializeField] float Freezetime =2f;
+    [SerializeField] AudioClip Falsesound;
+    [SerializeField] AudioClip Finishsound;
+    AudioSource audioSetting;
+    Rigidbody rb;
+
+    bool isTransitioning =false;
+    void  Start() 
+    {
+    audioSetting= GetComponent<AudioSource>();    
+    }
+
+void finishstate()
+{
+    rb =GetComponent<Rigidbody>();
+}
      private void OnCollisionEnter(Collision other) 
     {
-               
+
+
+        if (isTransitioning ) {return;}       
         switch (other.gameObject.tag)
         {          
             case "Start":
             Debug.Log( "start");
             break;
 
-            case "Obstacle":
-            Debug.Log(" Loser!!!!!!");
-            break;
-
             case "Finish":
-            Levelup();
+            LevelupFreezetime();
             break;
 
             default:
-            ReloadCheckpoint();
+            Startcrashcheckpoint();
             break;  
 
-        }  
+        }   
+        
+    }
+    void Startcrashcheckpoint()
+    {
+        isTransitioning = true;
+        audioSetting.Stop();
+        audioSetting.PlayOneShot(Falsesound);
+        GetComponent<RocketMove>().enabled= false;
+        Invoke("ReloadCheckpoint", Freezetime) ;
+    }
+    void LevelupFreezetime()
+    {
+        isTransitioning = true;
+        audioSetting.Stop();
+        audioSetting.PlayOneShot(Finishsound);
+        GetComponent<RocketMove>().enabled=false;
+        Invoke ("Levelup", Freezetime);
     }
 
     void Levelup()
@@ -41,12 +71,14 @@ public class Hits : MonoBehaviour
         }
 
         SceneManager.LoadScene(nextcSceneIndex); //load lai index
+        
 
     }
     //Restart checkpoint 
   void ReloadCheckpoint ()
     {
       int currentcheckpoint = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentcheckpoint);
+      SceneManager.LoadScene(currentcheckpoint);
+      
     }
 }
