@@ -9,6 +9,9 @@ public class Hits : MonoBehaviour
     [SerializeField] float Freezetime =2f;
     [SerializeField] AudioClip Falsesound;
     [SerializeField] AudioClip Finishsound;
+    [SerializeField] ParticleSystem FalseParticle;
+    [SerializeField] ParticleSystem FinishParticle;
+
     AudioSource audioSetting;
     Rigidbody rb;
 
@@ -38,25 +41,27 @@ void finishstate()
             break;
 
             default:
-            Startcrashcheckpoint();
+            Freezecheckpoint();
             break;  
 
         }   
         
     }
-    void Startcrashcheckpoint()
+    void Freezecheckpoint()
     {
-        isTransitioning = true;
+        isTransitioning = true;// xử lý action và trigger 1 sound khi va chạm
         audioSetting.Stop();
         audioSetting.PlayOneShot(Falsesound);
+        FalseParticle.Play();
         GetComponent<RocketMove>().enabled= false;
         Invoke("ReloadCheckpoint", Freezetime) ;
     }
     void LevelupFreezetime()
     {
-        isTransitioning = true;
+        isTransitioning = true;// xử lý action và trigger 1 sound khi up level
         audioSetting.Stop();
         audioSetting.PlayOneShot(Finishsound);
+        FinishParticle.Play();
         GetComponent<RocketMove>().enabled=false;
         Invoke ("Levelup", Freezetime);
     }

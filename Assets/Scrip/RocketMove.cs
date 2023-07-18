@@ -7,6 +7,9 @@ public class RocketMove : MonoBehaviour
     [SerializeField] float mainthrust = 600f;
     [SerializeField] float movethrust = 60f;
     [SerializeField] AudioClip Flysound;
+    [SerializeField] ParticleSystem LeftParticle;
+    [SerializeField] ParticleSystem RightParticle;
+    [SerializeField] ParticleSystem MainParticle;
     Rigidbody rb;
     AudioSource  audioSource;
     
@@ -37,10 +40,16 @@ public class RocketMove : MonoBehaviour
                 audioSource.PlayOneShot(Flysound);
                 
              } 
+             //set particle to action
+             if (!MainParticle.isPlaying)
+             {
+                MainParticle.Play();
+             }
         }
         else 
         {
             audioSource.Stop();
+            MainParticle.Stop();
         }
     }
     void ProcessRotation()
@@ -48,13 +57,22 @@ public class RocketMove : MonoBehaviour
         rb.freezeRotation= true;
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-           
            transform.Rotate(-new Vector3(1,0,0) * movethrust * Time.deltaTime);
+           //set particle to action
+           if (!LeftParticle.isPlaying)
+             {
+                LeftParticle.Play();
+             }
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
            
             transform.Rotate(new Vector3 (1,0,0)* movethrust * Time.deltaTime);
+            //set particle to action
+            if (!RightParticle.isPlaying)
+             {
+                RightParticle.Play();
+             }
         }
         rb.freezeRotation = false;
     }   
