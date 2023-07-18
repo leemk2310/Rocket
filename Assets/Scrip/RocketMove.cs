@@ -40,6 +40,10 @@ public class RocketMove : MonoBehaviour
         else 
         {
             audioSource.Stop();
+<<<<<<< Updated upstream
+=======
+            MainParticle.Stop();
+>>>>>>> Stashed changes
         }
     }
     void ProcessRotation()
