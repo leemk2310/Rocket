@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7365841236193748766}
   - component: {fileID: 39410674036922239}
   - component: {fileID: 4784481351863634795}
-  - component: {fileID: 5911396851403420155}
+  - component: {fileID: 1133444442985445131}
+  - component: {fileID: 7436690736751277761}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Obstacle
@@ -34,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &67935380731785137
 MeshFilter:
@@ -134,7 +135,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &5911396851403420155
+--- !u!114 &1133444442985445131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +144,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8330661320036649973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0bc870d814cd249abb04f1c18e3cda, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c489eaba2008f44bae00a2b46d467f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7436690736751277761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330661320036649973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda06e04912f1754ea41f8037e0c7c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementVector: {x: 0, y: 0, z: 0}
+  period: 2

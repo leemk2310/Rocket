@@ -11,6 +11,7 @@ public class Frozen : MonoBehaviour
         {
             
           GetComponent<Rigidbody>().constraints= RigidbodyConstraints.FreezePositionX;
+          
           GetComponent<Rigidbody>().constraints= RigidbodyConstraints.FreezePositionY;
           GetComponent<Rigidbody>().constraints= RigidbodyConstraints.FreezePositionZ;
           

@@ -16,57 +16,65 @@ public class Hits : MonoBehaviour
     Rigidbody rb;
 
     bool isTransitioning =false;
+    bool CheatCollision = false;
     void  Start() 
     {
     audioSetting= GetComponent<AudioSource>();    
     }
+      void Update()
+       {
+        CheatKey();
+        
+       }
+    void CheatKey() { // Cheat up level add on void update
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            Levelup();
+        }
+        else if (Input.GetKeyDown (KeyCode.D))
+        {
+            CheatCollision = !CheatCollision; // Cheat collision ko die  kjhi va cham
+        }
+    }  
 
-void finishstate()
-{
-    rb =GetComponent<Rigidbody>();
-}
-     private void OnCollisionEnter(Collision other) 
+      void OnCollisionEnter(Collision other) 
     {
-
-
         if (isTransitioning ) {return;}       
         switch (other.gameObject.tag)
         {          
             case "Start":
-            Debug.Log( "start");
+             Debug.Log("start");
             break;
-
             case "Finish":
-            LevelupFreezetime();
+            LevelupFreezetime ();
             break;
-
             default:
-            Freezecheckpoint();
+           Freezecheckpoint();
             break;  
 
         }   
         
-    }
-    void Freezecheckpoint()
-    {
-        isTransitioning = true;// xử lý action và trigger 1 sound khi va chạm
+   }
+    
+    void LevelupFreezetime()
+     {
+      isTransitioning = true;// xử lý action và trigger 1 sound khi up level
         audioSetting.Stop();
-        audioSetting.PlayOneShot(Falsesound);
-        FalseParticle.Play();
+       audioSetting.PlayOneShot(Finishsound);
+         FinishParticle.Play();
+       GetComponent<RocketMove>().enabled=false;
+        Invoke ("Levelup", Freezetime);
+     }
+     void Freezecheckpoint()
+     {
+     isTransitioning = true;// xử lý action và trigger 1 sound khi va chạm
+       audioSetting.Stop();
+       audioSetting.PlayOneShot(Falsesound);
+       FalseParticle.Play();
         GetComponent<RocketMove>().enabled= false;
         Invoke("ReloadCheckpoint", Freezetime) ;
-    }
-    void LevelupFreezetime()
-    {
-        isTransitioning = true;// xử lý action và trigger 1 sound khi up level
-        audioSetting.Stop();
-        audioSetting.PlayOneShot(Finishsound);
-        FinishParticle.Play();
-        GetComponent<RocketMove>().enabled=false;
-        Invoke ("Levelup", Freezetime);
-    }
-
-    void Levelup()
+     }
+     void Levelup()
     {
         int currentcheckpoint = SceneManager.GetActiveScene().buildIndex; // lan dau la index hien tai: 1
         int nextcSceneIndex = currentcheckpoint + 1; //tang len 1 : 1_+1
@@ -79,8 +87,8 @@ void finishstate()
         
 
     }
-    //Restart checkpoint 
-  void ReloadCheckpoint ()
+      // Restart checkpoint 
+    void ReloadCheckpoint ()
     {
       int currentcheckpoint = SceneManager.GetActiveScene().buildIndex;
       SceneManager.LoadScene(currentcheckpoint);

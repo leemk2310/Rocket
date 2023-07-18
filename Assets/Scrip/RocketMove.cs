@@ -34,8 +34,8 @@ public class RocketMove : MonoBehaviour
         // set value up, with verctor 2(2d), vector3 (3d)
        if( Input.GetKey(KeyCode.Space))
          { 
-             rb.AddRelativeForce(Vector3.up * mainthrust * Time.deltaTime); 
-             if (!audioSource.isPlaying)
+            rb.AddRelativeForce(Vector3.up * mainthrust * Time.deltaTime); 
+            if (!audioSource.isPlaying)
              {
                 audioSource.PlayOneShot(Flysound);
                 
@@ -43,37 +43,43 @@ public class RocketMove : MonoBehaviour
              //set particle to action
              if (!MainParticle.isPlaying)
              {
-                MainParticle.Play();
+               MainParticle.Play();
              }
         }
         else 
         {
             audioSource.Stop();
-            MainParticle.Stop();
+           // MainParticle.Stop();
         }
     }
     void ProcessRotation()
     {   
         rb.freezeRotation= true;
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-           transform.Rotate(-new Vector3(1,0,0) * movethrust * Time.deltaTime);
-           //set particle to action
-           if (!LeftParticle.isPlaying)
-             {
+         if (Input.GetKey(KeyCode.LeftArrow))
+         {
+            transform.Rotate(-new Vector3(1,0,0) * movethrust * Time.deltaTime);
+            //set particle to action
+            if (!LeftParticle.isPlaying)
+              {
                 LeftParticle.Play();
              }
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
+             else{
+             LeftParticle.Stop();
+         }
+         }
+         else if (Input.GetKey(KeyCode.RightArrow))
+         {
            
-            transform.Rotate(new Vector3 (1,0,0)* movethrust * Time.deltaTime);
-            //set particle to action
-            if (!RightParticle.isPlaying)
-             {
-                RightParticle.Play();
-             }
-        }
-        rb.freezeRotation = false;
+             transform.Rotate(new Vector3 (1,0,0)* movethrust * Time.deltaTime);
+             //set particle to action
+             if (!RightParticle.isPlaying)
+              {
+                 RightParticle.Play();
+              }
+              else {
+                 RightParticle.Stop();
+              }
+     }
+         rb.freezeRotation = false;
     }   
 }
