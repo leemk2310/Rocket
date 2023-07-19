@@ -681,6 +681,9 @@
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
         <HintPath>D:\Unity\Project\Rocket\Rocket\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+        <HintPath>D:\Unity\Project\Rocket\Rocket\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
         <HintPath>D:\Unity\Project\Rocket\Rocket\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
     </Reference>
@@ -728,6 +731,9 @@
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>D:\Unity\Project\Rocket\Rocket\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+        <HintPath>D:\Unity\Project\Rocket\Rocket\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
         <HintPath>D:\Unity\Project\Rocket\Rocket\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
