@@ -16,7 +16,7 @@ public class Occillator : MonoBehaviour
 
     void Update()
     {
-        
+        if (period <= Mathf.Epsilon) { return; }
         float cycles = Time.time / period;  // continually growing over time
         
         const float tau = Mathf.PI * 2;  // constant value of 6.283
