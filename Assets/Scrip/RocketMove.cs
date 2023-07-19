@@ -15,6 +15,8 @@ public class RocketMove : MonoBehaviour
     
     
     // Start is called before the first frame update
+    // check pul code
+    //idpate  cac
     void Start()
     {
         rb = GetComponent<Rigidbody>();
